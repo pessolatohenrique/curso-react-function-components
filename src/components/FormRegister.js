@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { TextField, Button, FormControlLabel, Switch } from "@material-ui/core";
 
 function FormRegister() {
+  const [name, setName] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [cpf, setCpf] = useState("");
+
   return (
-    <form>
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+        console.log("FIELDS", name, lastname, cpf);
+      }}
+    >
       <TextField
         id="name"
         label="Nome"
         variant="outlined"
         fullWidth
         margin="normal"
+        value={name}
+        onChange={(event) => setName(event.target.value)}
       />
       <TextField
         id="lastname"
@@ -17,6 +28,8 @@ function FormRegister() {
         variant="outlined"
         fullWidth
         margin="normal"
+        value={lastname}
+        onChange={(event) => setLastname(event.target.value)}
       />
       <TextField
         id="cpf"
@@ -24,6 +37,8 @@ function FormRegister() {
         variant="outlined"
         fullWidth
         margin="normal"
+        value={cpf}
+        onChange={(event) => setCpf(event.target.value)}
       />
       <FormControlLabel
         control={<Switch name="sales" color="primary" checked />}
@@ -35,7 +50,7 @@ function FormRegister() {
       />
       <br />
       <br />
-      <Button variant="contained" color="primary">
+      <Button type="submit" variant="contained" color="primary">
         Salvar
       </Button>
     </form>
