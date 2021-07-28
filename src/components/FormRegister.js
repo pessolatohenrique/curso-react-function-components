@@ -5,12 +5,14 @@ function FormRegister() {
   const [name, setName] = useState("");
   const [lastname, setLastname] = useState("");
   const [cpf, setCpf] = useState("");
+  const [sales, setSales] = useState(true);
+  const [news, setNews] = useState(true);
 
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        console.log("FIELDS", name, lastname, cpf);
+        console.log("FIELDS", { name, lastname, cpf, sales, news });
       }}
     >
       <TextField
@@ -41,11 +43,25 @@ function FormRegister() {
         onChange={(event) => setCpf(event.target.value)}
       />
       <FormControlLabel
-        control={<Switch name="sales" color="primary" checked />}
+        control={
+          <Switch
+            name="sales"
+            color="primary"
+            checked={sales}
+            onChange={(event) => setSales(event.target.checked)}
+          />
+        }
         label="Promoções"
       />
       <FormControlLabel
-        control={<Switch name="news" color="primary" checked />}
+        control={
+          <Switch
+            name="news"
+            color="primary"
+            checked={news}
+            onChange={(event) => setNews(event.target.checked)}
+          />
+        }
         label="Novidades"
       />
       <br />
