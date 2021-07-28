@@ -9,6 +9,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function register(fields) {
+  console.log("Fields on register", fields);
+}
+
 function App() {
   const classes = useStyles();
 
@@ -17,7 +21,7 @@ function App() {
       <Typography component="h1" variant="h3" align="center" color="primary">
         Cadastre-se
       </Typography>
-      <FormRegister />
+      <FormRegister onRegister={register} />
     </Container>
   );
 }
