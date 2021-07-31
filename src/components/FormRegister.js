@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { TextField, Button, FormControlLabel, Switch } from "@material-ui/core";
 
-function FormRegister({ onRegister }) {
+function FormRegister({ onRegister, onValidateCpf, onValidateRequired }) {
   const [name, setName] = useState("");
   const [lastname, setLastname] = useState("");
   const [cpf, setCpf] = useState("");
   const [sales, setSales] = useState(true);
   const [news, setNews] = useState(true);
+  const [errors, setErrors] = useState({
+    name: { valid: true, message: "" },
+    lastname: { valid: true, message: "" },
+    cpf: { valid: true, message: "" },
+  });
 
   return (
     <form
@@ -21,8 +26,18 @@ function FormRegister({ onRegister }) {
         variant="outlined"
         fullWidth
         margin="normal"
+        error={!errors.name.valid}
+        helperText={errors.name.message}
         value={name}
         onChange={(event) => setName(event.target.value)}
+        onBlur={(event) => {
+          const validate = onValidateRequired(
+            event.target.id,
+            event.target.value,
+            errors
+          );
+          setErrors(validate);
+        }}
       />
       <TextField
         id="lastname"
@@ -30,8 +45,18 @@ function FormRegister({ onRegister }) {
         variant="outlined"
         fullWidth
         margin="normal"
+        error={!errors.lastname.valid}
+        helperText={errors.lastname.message}
         value={lastname}
         onChange={(event) => setLastname(event.target.value)}
+        onBlur={(event) => {
+          const validate = onValidateRequired(
+            event.target.id,
+            event.target.value,
+            errors
+          );
+          setErrors(validate);
+        }}
       />
       <TextField
         id="cpf"
@@ -39,8 +64,14 @@ function FormRegister({ onRegister }) {
         variant="outlined"
         fullWidth
         margin="normal"
+        error={!errors.cpf.valid}
+        helperText={errors.cpf.message}
         value={cpf}
         onChange={(event) => setCpf(event.target.value)}
+        onBlur={(event) => {
+          const validate = onValidateCpf(cpf, errors);
+          setErrors(validate);
+        }}
       />
       <FormControlLabel
         control={
