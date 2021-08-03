@@ -2,7 +2,7 @@
 
 ### Sobre
 
-O objetivo deste projeto é construir um formulário com validação e envio de campos baseado na abordagem de Function Components, adicionada na versão 16.8 do React. Saiba mais sobre o curso [neste link](http://localhost:3000).
+O objetivo deste projeto é construir um formulário com validação e envio de campos baseado na abordagem de Function Components, adicionada na versão 16.8 do React. Saiba mais sobre o curso [neste link](https://cursos.alura.com.br/course/react-function-components).
 
 ### Tecnologias
 
